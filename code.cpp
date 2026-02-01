@@ -139,6 +139,18 @@ void deleteAlternateNode(Node* &head){
         delete deleteNode;
     }
     
+};
+
+int findMiddleNode(Node* &head){
+    Node* slow = head;
+    Node* fast = head;
+
+    while(fast!=NULL && fast->next!=NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    //Now slow is at middle of Node!
+    return slow->value;
 }
 
 int main()
@@ -177,7 +189,9 @@ int main()
     cout<<endl<<"After Updating the Value.!"<<endl;
         update(head, 79, 1);
         traverse(head);                           
-    
+        
+    cout<<endl<<"The Middle Node is :"<<findMiddleNode(head)<<endl;
+
     cout<<endl<<"After deleting Alternate Node.!"<<endl;
         deleteAlternateNode(head);
         traverse(head);                           
