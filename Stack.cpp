@@ -8,6 +8,7 @@ class Stack
     int top;
 
     public:
+    // Constructor
     Stack()
     {
         arr =new int[n];
