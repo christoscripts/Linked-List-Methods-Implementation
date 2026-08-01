@@ -1,0 +1,224 @@
+
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *next_add;
+};
+
+class Linked_List
+{
+public:
+    Node *head = NULL;
+    void insert()
+    {
+        int n;
+        cout << "\n\n Enter value : ";
+        cin >> n;
+        Node *new_node = new Node;
+        new_node->data = n;
+        new_node->next_add = NULL;
+        if (head == NULL)
+        {
+            head = new_node;
+        }
+        else
+        {
+            Node *ptr = head;
+            while (ptr->next_add != NULL)
+            {
+                ptr = ptr->next_add;
+            }
+            ptr->next_add = new_node;
+        }
+        cout << "\n\n New Node is inserted successfully..";
+    }
+
+    void count()
+    {
+        if (head == NULL)
+        {
+            cout << "\n\n Linked List is empty!";
+        }
+        else
+        {
+            int n = 0;
+            Node *ptr = head;
+            while (ptr != NULL)
+            {
+                n++;
+                ptr = ptr->next_add;
+            }
+            cout << "\n\n Total Nodes : " << n;
+        }
+    }
+
+    void search()
+    {
+        if (head == NULL)
+        {
+            cout << "\n\n Linked List is empty.";
+        }
+        else
+        {
+            int n, found = 0;
+            cout << "\n\n Enter value u want to search : ";
+            cin >> n;
+            Node *ptr = head;
+            while (ptr != NULL)
+            {
+                if (n == ptr->data)
+                {
+                    found++;
+                    cout << "\n\n Value is found..";
+                    break;
+                }
+                ptr = ptr->next_add;
+            }
+            if (found == 0)
+            {
+                cout << "\n\n Value can't found..";
+            }
+        }
+    }
+
+    void update()
+    {
+        if (head == NULL)
+        {
+            cout << "\n\n Linked List is empty.";
+        }
+        else
+        {
+            int n, found = 0;
+            cout << "\n\n Enter value for updation : ";
+            cin >> n;
+            Node *ptr = head;
+            while (ptr != NULL)
+            {
+                if (n == ptr->data)
+                {
+                    cout << "\n\n Enter New value : ";
+                    cin >> ptr->data;
+                    found++;
+                    cout << "\n\n Value updated...";
+                    break;
+                }
+                ptr = ptr->next_add;
+            }
+            if (found == 0)
+            {
+                cout << "\n\n Value can't found...";
+            }
+        }
+    }
+
+    void del()
+    {
+        if (head == NULL)
+        {
+            cout << "\n\n Linked List is empty.";
+        }
+        else
+        {
+            int n, found = 0;
+            cout << "Enter value for deletion : ";
+            cin >> n;
+            if (n == head->data)
+            {
+                Node *ptr = head;
+                head = head->next_add;
+                delete ptr;
+                cout << "\n\n Node Deleted";
+                found++;
+            }
+            else
+            {
+                Node *pre = head;
+                Node *ptr = head->next_add;
+                while (ptr != NULL)
+                {
+                    if (n == ptr->data)
+                    {
+                        pre->next_add = ptr->next_add;
+                        delete ptr;
+                        found++;
+                        cout << "Node Deleted...";
+                    }
+                }
+                if (found == 0)
+                {
+                    cout << "\n\n Value can't found...";
+                }
+            }
+        }
+    }
+
+    void show()
+    {
+        if (head == NULL)
+        {
+            cout << "\n\n Linked List is empty.";
+        }
+        else
+        {
+            Node *ptr = head;
+            while (ptr != NULL)
+            {
+                cout << ptr->data << " ";
+                ptr = ptr->next_add;
+            }
+        }
+    }
+};
+
+int main()
+{
+    Linked_List obj;
+    p:
+    system("cls");
+    int choice;
+    cout << "\n\n 1. Insert Node";
+    cout << "\n\n 2. Count Nodes";
+    cout << "\n\n 3. Search Node";
+    cout << "\n\n 4. Update Node";
+    cout << "\n\n 5. Delete Node";
+    cout << "\n\n 6. Show Node";
+    cout << "\n\n 7. Exit";
+    cout << "\n\n Your choice: ";
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        obj.insert();
+        break;
+    case 2:
+        obj.count();
+        break;
+    case 3:
+        obj.search();
+        break;
+    case 4:
+        obj.update();
+        break;
+    case 5:
+        obj.del();
+        break;
+    case 6:
+        obj.show();
+        break;
+    case 7:
+        exit(0);
+
+    default:
+        cout << "Invalid choice! Plz Try Again!";
+    }
+    getch();
+    goto p;
+}
